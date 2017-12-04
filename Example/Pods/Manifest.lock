@@ -1,0 +1,16 @@
+PODS:
+  - ZJCBluetoothManager (0.1.0)
+
+DEPENDENCIES:
+  - ZJCBluetoothManager (from `../`)
+
+EXTERNAL SOURCES:
+  ZJCBluetoothManager:
+    :path: ../
+
+SPEC CHECKSUMS:
+  ZJCBluetoothManager: 097830687a3fc8ace76a59b36a2a5295956431d5
+
+PODFILE CHECKSUM: fad1a129b4f9fdf553cdc8aeaf7b59a6182c1671
+
+COCOAPODS: 1.3.1

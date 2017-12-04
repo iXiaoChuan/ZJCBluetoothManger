@@ -1,0 +1,22 @@
+{
+  "name": "ZJCBluetoothManager",
+  "version": "0.1.0",
+  "summary": "A short description of ZJCBluetoothManager.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/xiaochuan171090331@outlook.com/ZJCBluetoothManager",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "xiaochuan171090331@outlook.com": "xiaochuan171090331@outlook.com"
+  },
+  "source": {
+    "git": "https://github.com/xiaochuan171090331@outlook.com/ZJCBluetoothManager.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "ZJCBluetoothManager/Classes/**/*"
+}

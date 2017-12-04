@@ -1,0 +1,6 @@
+framework module ZJCBluetoothManager {
+  umbrella header "ZJCBluetoothManager-umbrella.h"
+
+  export *
+  module * { export * }
+}
