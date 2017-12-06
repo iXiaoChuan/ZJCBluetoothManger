@@ -43,10 +43,10 @@ typedef NS_ENUM(NSUInteger, ZJCScanError) {
 };
 
 typedef NS_ENUM(NSUInteger, ZJCFullOptionStage) {
-    ZJCFullOptionStageConnecting,             // 链接阶段
-    ZJCFullOptionStageSearchServices,         // 搜索服务阶段
-    ZJCFullOptionStageSearchCharacteristics,  // 搜索特征阶段
-    ZJCFullOptionStageSearchDescriptions,     // 搜索描述阶段
+    ZJCFullOptionStageConnecting,           // 链接阶段
+    ZJCFullOptionStageFindServices,         // 发现服务阶段
+    ZJCFullOptionStageFindCharacteristics,  // 发现特征阶段
+    ZJCFullOptionStageFindDescriptions,     // 发现描述阶段
 };
 
 /**
