@@ -32,27 +32,27 @@
 /* Begin PBXFileReference section */
 		0109C96FEDD4487F1AF728B78F440050 /* ZJCBluetoothManager-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ZJCBluetoothManager-dummy.m"; sourceTree = "<group>"; };
 		0D236BFC16DC5F886C31902714956B9C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		10236D71A4C980AB30B1DFFF5DB6A6C8 /* ZJCBluetoothManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ZJCBluetoothManager.framework; path = ZJCBluetoothManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1CC369A19F09640380360626C6653B0B /* Pods_ZJCBluetoothManager_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ZJCBluetoothManager_Example.framework; path = "Pods-ZJCBluetoothManager_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		10236D71A4C980AB30B1DFFF5DB6A6C8 /* ZJCBluetoothManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZJCBluetoothManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1CC369A19F09640380360626C6653B0B /* Pods_ZJCBluetoothManager_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZJCBluetoothManager_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2897D7673FD4BB7EDE65ECBA0A4D42E5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2FE2B405C86C25C79143DEB6CEAB7482 /* Pods-ZJCBluetoothManager_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZJCBluetoothManager_Example-dummy.m"; sourceTree = "<group>"; };
 		3B63CACE71AB85710D3EFB356587553E /* Pods-ZJCBluetoothManager_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZJCBluetoothManager_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		3BDB38BB9AD1E3CAB078F4EF7EFA9657 /* ZJCBluetoothManager.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = ZJCBluetoothManager.modulemap; sourceTree = "<group>"; };
+		3BDB38BB9AD1E3CAB078F4EF7EFA9657 /* ZJCBluetoothManager.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ZJCBluetoothManager.modulemap; sourceTree = "<group>"; };
 		3F71755E9CCB4612F229DE0D5F6C25A5 /* Pods-ZJCBluetoothManager_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZJCBluetoothManager_Tests-resources.sh"; sourceTree = "<group>"; };
 		53DCFD1A6285D583D242AFC05288506C /* Pods-ZJCBluetoothManager_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZJCBluetoothManager_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		583F4098C0414B1CB22364660EDA01CA /* Pods-ZJCBluetoothManager_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZJCBluetoothManager_Example-frameworks.sh"; sourceTree = "<group>"; };
-		5BDADF406F6531AE44107F8A89E25192 /* Pods-ZJCBluetoothManager_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-ZJCBluetoothManager_Tests.modulemap"; sourceTree = "<group>"; };
+		5BDADF406F6531AE44107F8A89E25192 /* Pods-ZJCBluetoothManager_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ZJCBluetoothManager_Tests.modulemap"; sourceTree = "<group>"; };
 		643D0CB462244D6BB90E5260944F5CE2 /* ZJCBluetoothManager-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZJCBluetoothManager-umbrella.h"; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		68293F192E68AA952FB6F96E2CDBECD4 /* Pods-ZJCBluetoothManager_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZJCBluetoothManager_Example-resources.sh"; sourceTree = "<group>"; };
 		68F3753D834F78305C426E648847510D /* Pods-ZJCBluetoothManager_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ZJCBluetoothManager_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		6BF7F938F77319F96927310BA30B7082 /* Pods-ZJCBluetoothManager_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-ZJCBluetoothManager_Example.modulemap"; sourceTree = "<group>"; };
+		6BF7F938F77319F96927310BA30B7082 /* Pods-ZJCBluetoothManager_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ZJCBluetoothManager_Example.modulemap"; sourceTree = "<group>"; };
 		6CA24E7EBC2FEEC88583AD901B5926A6 /* Pods-ZJCBluetoothManager_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ZJCBluetoothManager_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		7BD52C30BAC616E574429CAF94B122AA /* Pods-ZJCBluetoothManager_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ZJCBluetoothManager_Example-umbrella.h"; sourceTree = "<group>"; };
 		8EF1D36D4F3857AB1127F211FC1BF6DF /* Pods-ZJCBluetoothManager_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZJCBluetoothManager_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		947C3EEF914CA98DC2508CA1A1E4EF77 /* Pods-ZJCBluetoothManager_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZJCBluetoothManager_Tests-dummy.m"; sourceTree = "<group>"; };
-		9BEB15345681F455EC8B35F9F13C9038 /* Pods_ZJCBluetoothManager_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ZJCBluetoothManager_Tests.framework; path = "Pods-ZJCBluetoothManager_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BEB15345681F455EC8B35F9F13C9038 /* Pods_ZJCBluetoothManager_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZJCBluetoothManager_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B47FD9B5D098382CD4B4C0271CEBDB /* Pods-ZJCBluetoothManager_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZJCBluetoothManager_Example.release.xcconfig"; sourceTree = "<group>"; };
 		A7D00386DB442784FAC18D1C71096D5A /* Pods-ZJCBluetoothManager_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZJCBluetoothManager_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		AB5D8329C24CDC5930A9D7D6F915C621 /* Pods-ZJCBluetoothManager_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZJCBluetoothManager_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -295,7 +295,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0910;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -397,7 +397,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -405,14 +407,20 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"POD_CONFIGURATION_RELEASE=1",
 					"$(inherited)",
@@ -618,7 +626,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -626,15 +636,21 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"POD_CONFIGURATION_DEBUG=1",
