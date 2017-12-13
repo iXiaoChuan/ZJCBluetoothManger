@@ -82,7 +82,9 @@ static ZJCBluetoothManager * instance = nil;
      *  @param options  需要执行的操作.  CBCentralManagerOptionShowPowerAlertKey: 一个默认No的Bool值,用来配置当蓝牙PowerOff的时候,是否需要给用户一个弹框.
      *                                CBCentralManagerOptionRestoreIdentifierKey: 用来标志该中心的UID,以供系统后来的调用中,定位该中心
      */
-    _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:@{CBCentralManagerOptionRestoreIdentifierKey:@"ZJCBluetoothManagerCenterManager"}];  /**< 参数1:状态回调的代理  参数2:执行的线程,默认主线程  参数3:需要执行的操作 */
+    _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];  /**< 参数1:状态回调的代理  参数2:执行的线程,默认主线程  参数3:需要执行的操作 */
+    [_scandPeripherals removeAllObjects];
+    _currentConnectedPeripheral = nil;
 }
 
 #pragma mark - Common method
@@ -103,8 +105,96 @@ static ZJCBluetoothManager * instance = nil;
     [_centralManager stopScan];
 }
 
-#pragma mark - CBPeripheralDelegate----------------------------------------------------------------------------------------------------------------
-#pragma mark ==========发现服务、发现特定服务、写入服务=====================
+#pragma mark - Bluetooth Related
+- (void)startScanPeripheralTimeout:(NSTimeInterval)timeout{
+    self.defaultTimeout = timeout;
+    if (_centerManager.state == CBManagerStatePoweredOn) {
+        [_centerManager scanForPeripheralsWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey:@NO}];  /**< service:需要支持的服务,默认nil扫描全部.   options:重点介绍CBCentralManagerScanOptionAllowDuplicatesKey 这个键的值是一个NSNumber对象。如果是，过滤是禁用的，每次中心接收到来自外围的广告包时，都会生成一个发现事件。禁用此滤波会对电池寿命产生不利影响，且仅在必要时使用。如果没有，相同外围的多个发现合并成一个单独的发现事件。如果没有指定密钥，则默认值为NO */
+        return;
+    }
+    
+    [self resetManager];
+}
+
+- (void)startScanPeripheralTimeout:(NSTimeInterval)timeout success:(ZJCScanPeripheralSuccess)success failure:(ZJCScanPeripheralError)failure{
+    
+}
+
+- (void)startScanPerpheralTimeout:(NSTimeInterval)timeout includeServies:(NSArray<CBUUID *> *)servies success:(ZJCScanPeripheralSuccess)success failure:(ZJCScanPeripheralError)failure{
+    
+}
+
+- (void)stopScanComplete:(ZJCScanPeripheralSuccess)complete{
+    
+}
+
+- (void)connectPeripheral:(CBPeripheral *)peripheral{
+    
+}
+
+- (void)connectPeripheralWithName:(NSString *)name{
+    
+}
+
+- (void)connectPeripheral:(CBPeripheral *)peripheral completion:(ZJCConnectCompletion)completion{
+    
+}
+
+- (void)connectPeripheral:(CBPeripheral *)peripheral discoverServices:(NSArray<CBUUID *> *)services discoverCharacteristics:(NSArray<CBUUID *> *)characteristics discoverDescriptor:(NSArray<CBUUID *> *)descriptors completion:(ZJCFullOptionStage)completion{
+    
+}
+
+- (void)autoConnectLastPeripheralTimeout:(NSTimeInterval)timeout completion:(ZJCConnectCompletion)completion{
+    
+}
+
+- (void)sendData:(NSData *)data completion:(ZJCWirteDataComplete)result{
+    
+}
+
+#pragma mark - CBCentralManagerDelegate----------------------------------------------------------------------------------------------------------------
+// 管理中心更新状态.  // 当状态低于On的时候,就会停止扫描,并且断开所有连接.   当状态低于Off的时候,所有扫描到的设备信息,都需要重新扫描和获取.
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central{
+    NSLog(@"=====ZJCBTM===== 中心管理器更新了状态.");
+}
+// 管理中心将要修改状态.   当系统将恢复中央管理器时调用。对于那些选择支持核心蓝牙的状态保存和恢复功能的应用程序，这是当你的应用程序重新启动到后台完成一些与蓝牙相关的任务时调用的第一个方法。使用此方法来同步应用程序的状态与蓝牙系统的状态。
+- (void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary<NSString *, id> *)dict{
+    NSLog(@"=====ZJCBTM===== 中心管理器从后台进入前台.");
+}
+#pragma mark 发现外设  >>>>>  成功、失败
+// 管理中心发现外设.    当中央管理器在扫描时发现外围设备时调用。广告数据可以通过广告数据检索键中列出的键来访问。如果要在其上执行任何命令，则必须保留外设的本地副本。在使用情况下，你的应用程序可以自动连接到某个范围内的外围设备，你可以使用RSSI数据来确定一个被发现的外围设备的接近程度。  Advertisement Data Retrieval Keys : 名称、制造商、服务、发射功率、可连接性
+- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *, id> *)advertisementData RSSI:(NSNumber *)RSSI {
+    NSLog(@"=====ZJCBTM===== 发现外设成功.");
+}
+#pragma mark 连接外设  >>>>>  成功、失败
+// 链接外设成功.
+- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral{
+    
+}
+// 链接外设失败
+- (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error{
+    
+}
+#pragma mark 断开外设
+// 断开外设链接
+- (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error{
+    
+}
+
+#pragma mark CBPeripheralDelegate----------------------------------------------------------------------------------------------------------------
+// 外设更新name.
+- (void)peripheralDidUpdateName:(CBPeripheral *)peripheral{
+    NSLog(@"=====ZJCBTM===== 设备名称更新了.  %@",peripheral.name);
+}
+// 读取RSSI(信号强度).  当前连接到中心管理器的外设,如果更新了RSSI,就在这里读取.需要提前调用读取方法.  //- (void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(NSError *)error
+- (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error{
+    NSLog(@"=====ZJCBTM===== 设备RSSI更新了. %@",RSSI);
+}
+// 这里暂时还没处理.  面向连接的蓝牙.
+//- (void)peripheral:(CBPeripheral *)peripheral didOpenL2CAPChannel:(nullable CBL2CAPChannel *)channel error:(nullable NSError *)error{
+//
+//}
+#pragma mark 服务  >>>>>  发现服务、发现特定服务、写入服务
 // 发现服务.  需要调用系统的发现服务的方法,发现可用服务后,就会调用该方法,回调可用的服务信息或者错误信息.
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error{
     NSLog(@"=====ZJCBTM===== 发现服务. %@",peripheral.services);
@@ -117,7 +207,7 @@ static ZJCBluetoothManager * instance = nil;
 - (void)peripheral:(CBPeripheral *)peripheral didModifyServices:(NSArray<CBService *> *)invalidatedServices{
     NSLog(@"=====ZJCBTM===== 设备服务修改了.  %@",invalidatedServices);
 }
-#pragma mark ==========发现特征、读取特征、写入特征、特征通知状态更新===========
+#pragma mark 特征  >>>>>  发现特征、读取特征、写入特征、特征通知状态更新
 // 发现特征值.   当调用系统发现特征值的方法的时候,发现了特征值,就会调用该方法.
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(nullable NSError *)error{
     NSLog(@"=====ZJCBTM===== 发现特征值. %@",service);
@@ -138,7 +228,7 @@ static ZJCBluetoothManager * instance = nil;
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error{
     
 }
-#pragma mark ==========发现描述、读取描述、写入描述=========================
+#pragma mark 描述  >>>>>  发现描述、读取描述、写入描述
 // 发现描述.   当调用系统发现描述的方法的时候,发现到了描述,就会调用该方法.
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverDescriptorsForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error{
     
@@ -152,47 +242,8 @@ static ZJCBluetoothManager * instance = nil;
     
 }
 
-#pragma mark Others
-// 外设更新name.
-- (void)peripheralDidUpdateName:(CBPeripheral *)peripheral{
-    NSLog(@"=====ZJCBTM===== 设备名称更新了.  %@",peripheral.name);
-}
-// 读取RSSI(信号强度).  当前连接到中心管理器的外设,如果更新了RSSI,就在这里读取.需要提前调用读取方法.  //- (void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(NSError *)error
-- (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error{
-    NSLog(@"=====ZJCBTM===== 设备RSSI更新了. %@",RSSI);
-}
-// 这里暂时还没处理.  面向连接的蓝牙.
-- (void)peripheral:(CBPeripheral *)peripheral didOpenL2CAPChannel:(nullable CBL2CAPChannel *)channel error:(nullable NSError *)error{
-    
-}
-#pragma mark  CBCentralManagerDelegate----------------------------------------------------------------------------------------------------------------
-#pragma mark ==========发现外设成功======================================
-// 管理中心发现外设.    当中央管理器在扫描时发现外围设备时调用。广告数据可以通过广告数据检索键中列出的键来访问。如果要在其上执行任何命令，则必须保留外设的本地副本。在使用情况下，你的应用程序可以自动连接到某个范围内的外围设备，你可以使用RSSI数据来确定一个被发现的外围设备的接近程度。  Advertisement Data Retrieval Keys : 名称、制造商、服务、发射功率、可连接性
-- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *, id> *)advertisementData RSSI:(NSNumber *)RSSI {
-    
-}
-#pragma mark ==========连接外设成功、连接外设失败============================
-- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral{
-    
-}
-- (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error{
-    
-}
-#pragma mark ==========断开连接外设=======================================
-- (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error{
-    
-}
-#pragma mark Others
-// 管理中心更新状态.  // 当状态低于On的时候,就会停止扫描,并且断开所有连接.   当状态低于Off的时候,所有扫描到的设备信息,都需要重新扫描和获取.
-- (void)centralManagerDidUpdateState:(CBCentralManager *)central{
-    
-}
-// 管理中心将要修改状态.   当系统将恢复中央管理器时调用。对于那些选择支持核心蓝牙的状态保存和恢复功能的应用程序，这是当你的应用程序重新启动到后台完成一些与蓝牙相关的任务时调用的第一个方法。使用此方法来同步应用程序的状态与蓝牙系统的状态。  
-- (void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary<NSString *, id> *)dict{
-    
-}
-
 #pragma mark  CBPeripheralManagerDelegate----------------------------------------------------------------------------------------------------------------
+// 这里是作为"外设中心"的代理方法,暂不实现.
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral{
     
 }
@@ -226,10 +277,10 @@ static ZJCBluetoothManager * instance = nil;
 - (void)peripheralManager:(CBPeripheralManager *)peripheral didUnpublishL2CAPChannel:(CBL2CAPPSM)PSM error:(nullable NSError *)error{
     
 }
-- (void)peripheralManager:(CBPeripheralManager *)peripheral didOpenL2CAPChannel:(nullable CBL2CAPChannel *)channel error:(nullable NSError *)error{
-    
-}
-#pragma mark - layzLoad
+//- (void)peripheralManager:(CBPeripheralManager *)peripheral didOpenL2CAPChannel:(nullable CBL2CAPChannel *)channel error:(nullable NSError *)error{
+//
+//}
 
+#pragma mark - layzLoad
 
 @end

@@ -124,9 +124,9 @@
  *              要在不同的阶段处理相应的业务逻辑,可以调用此方法.
  *
  *  @param peripheral      需要连接的外设.
- *  @param services        外设应该支持的services.默认为nil,搜索全部.
- *  @param characteristics 对应服务应该支持的characteristics.默认为nil,搜索全部.
- *  @param descriptor      对应特征支持的descriptor.默认为nil,搜索全部.
+ *  @param services        外设需要支持的services.默认为nil,搜索全部.
+ *  @param characteristics 对应service需要支持的characteristics.默认为nil,搜索全部.
+ *  @param descriptor      对应characteristic需要支持的descriptor.默认为nil,搜索全部.
  *  @param completion      连接完成的回调.
  */
 - (void)connectPeripheral:(CBPeripheral *)peripheral discoverServices:(NSArray<CBUUID *>*)services discoverCharacteristics:(NSArray<CBUUID *>*)characteristics discoverDescriptor:(NSArray<CBUUID *>*)descriptors completion:(ZJCFullOptionStage)completion;
