@@ -82,7 +82,7 @@ static ZJCBluetoothManager * instance = nil;
      *  @param options  需要执行的操作.  CBCentralManagerOptionShowPowerAlertKey: 一个默认No的Bool值,用来配置当蓝牙PowerOff的时候,是否需要给用户一个弹框.
      *                                CBCentralManagerOptionRestoreIdentifierKey: 用来标志该中心的UID,以供系统后来的调用中,定位该中心
      */
-    _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];  /**< 参数1:状态回调的代理  参数2:执行的线程,默认主线程  参数3:需要执行的操作 */
+    _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue() options:nil];  /**< 参数1:状态回调的代理  参数2:执行的线程,默认主线程  参数3:需要执行的操作 */
     [_scandPeripherals removeAllObjects];
     _currentConnectedPeripheral = nil;
 }
@@ -117,7 +117,16 @@ static ZJCBluetoothManager * instance = nil;
 }
 
 - (void)startScanPeripheralTimeout:(NSTimeInterval)timeout success:(ZJCScanPeripheralSuccess)success failure:(ZJCScanPeripheralError)failure{
+    self.defaultTimeout = timeout;
+    _scanPeripheralSuccess = success;
+    _scanPeripheralError = failure;
     
+    if (_centerManager.state == CBManagerStatePoweredOn) {
+        [_centerManager scanForPeripheralsWithServices:nil options:nil];
+        return;
+    }
+    
+    [self resetManager];
 }
 
 - (void)startScanPerpheralTimeout:(NSTimeInterval)timeout includeServies:(NSArray<CBUUID *> *)servies success:(ZJCScanPeripheralSuccess)success failure:(ZJCScanPeripheralError)failure{
@@ -155,16 +164,65 @@ static ZJCBluetoothManager * instance = nil;
 #pragma mark - CBCentralManagerDelegate----------------------------------------------------------------------------------------------------------------
 // 管理中心更新状态.  // 当状态低于On的时候,就会停止扫描,并且断开所有连接.   当状态低于Off的时候,所有扫描到的设备信息,都需要重新扫描和获取.
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central{
-    NSLog(@"=====ZJCBTM===== 中心管理器更新了状态.");
+    NSLog(@"=====ZJCBTM===== 中心管理器更新了状态.%ld",central.state);
+    switch (central.state) {
+        case CBManagerStateUnknown:       // 状态未知
+        {
+            
+        }
+            break;
+        case CBManagerStateResetting:     // 蓝牙重启
+        {
+            
+        }
+            break;
+        case CBManagerStateUnsupported:   // 蓝牙不支持
+        {
+            
+        }
+            break;
+        case CBManagerStateUnauthorized:  // 蓝牙未认证(配对)
+        {
+            // FIXME:当前没有找到需要配对的设备,这里先暂时不实现
+        }
+            break;
+        case CBManagerStatePoweredOff:    // 蓝牙关闭
+        {
+            
+        }
+            break;
+        case CBManagerStatePoweredOn:     // 蓝牙打开可用
+        {
+            [central scanForPeripheralsWithServices:nil options:nil];
+        }
+            break;
+        default:
+            break;
+    }
 }
-// 管理中心将要修改状态.   当系统将恢复中央管理器时调用。对于那些选择支持核心蓝牙的状态保存和恢复功能的应用程序，这是当你的应用程序重新启动到后台完成一些与蓝牙相关的任务时调用的第一个方法。使用此方法来同步应用程序的状态与蓝牙系统的状态。
-- (void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary<NSString *, id> *)dict{
-    NSLog(@"=====ZJCBTM===== 中心管理器从后台进入前台.");
-}
+//// 管理中心将要修改状态.   当系统将恢复中央管理器时调用。对于那些选择支持核心蓝牙的状态保存和恢复功能的应用程序，这是当你的应用程序重新启动到后台完成一些与蓝牙相关的任务时调用的第一个方法。使用此方法来同步应用程序的状态与蓝牙系统的状态。
+//- (void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary<NSString *, id> *)dict{
+//    NSLog(@"=====ZJCBTM===== 中心管理器从后台进入前台.");
+//}
 #pragma mark 发现外设  >>>>>  成功、失败
 // 管理中心发现外设.    当中央管理器在扫描时发现外围设备时调用。广告数据可以通过广告数据检索键中列出的键来访问。如果要在其上执行任何命令，则必须保留外设的本地副本。在使用情况下，你的应用程序可以自动连接到某个范围内的外围设备，你可以使用RSSI数据来确定一个被发现的外围设备的接近程度。  Advertisement Data Retrieval Keys : 名称、制造商、服务、发射功率、可连接性
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *, id> *)advertisementData RSSI:(NSNumber *)RSSI {
     NSLog(@"=====ZJCBTM===== 发现外设成功.");
+    if (peripheral.name.length <= 0) {
+        return;
+    }
+    [_scandPeripherals addObject:peripheral];
+    
+    if (_scanPeripheralSuccess) {
+        _scanPeripheralSuccess(NO,_scandPeripherals);
+    }
+    
+//    if (_scandPeripherals.count == 0) {
+//        [_scandPeripherals addObject:peripheral];
+//    } else {
+//        BOOL haveExit = NO;
+//
+//    }
 }
 #pragma mark 连接外设  >>>>>  成功、失败
 // 链接外设成功.

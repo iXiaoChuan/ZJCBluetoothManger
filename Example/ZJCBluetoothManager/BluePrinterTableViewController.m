@@ -57,7 +57,15 @@
 #pragma mark - button selector
 - (void)leftBarButtonClicked{
     /** 扫描周围的蓝牙外设 */
-    [[ZJCBluetoothManager sharedInstance] startScanPeripheralTimeout:10];
+    [[ZJCBluetoothManager sharedInstance] startScanPeripheralTimeout:10 success:^(BOOL isTimeOut, NSArray<CBPeripheral *> *perpherals) {
+        if (self.deviceArray) {
+            [self.deviceArray removeAllObjects];
+            self.deviceArray = [NSMutableArray arrayWithArray:perpherals];
+        }
+        [self.tableView reloadData];
+    } failure:^(ZJCScanError error) {
+        
+    }];
 }
 
 - (void)rightBarButtonClicked{
